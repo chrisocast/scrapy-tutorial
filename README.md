@@ -1,4 +1,4 @@
-Scrapy-tutorial-liquor
+Scrapy-tutorial
 ======================
 
 _**UPDATE:**_ This tutorial is very old at this point and is most likely out of date with the Scrapy library. Also in 2012, Washington State began allowing private-sector businesses to sell liquor and closed all state-owned stores. The Liquor Control Board web site I used in this example was closed along with them. If I get time to post a new Scrapy tutorial, I'll post an update here as well. 
