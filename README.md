@@ -27,7 +27,7 @@ This creates the basic structure for your project in a folder called "waliquor".
 
 ## Building the spider
 
-> [Spiders](http://doc.scrapy.org/topics/spiders.html) are user-written classes used to scrape information you're after. They return Items.
+> [Spiders](http://doc.scrapy.org/en/0.24/topics/spiders.html) are user-written classes used to scrape information you're after. They return Items.
 
 Our spider will have three major steps:
 
@@ -60,7 +60,7 @@ SPIDER = WaliquorSpider()
         return  [brandCategoriesRequest] 
 ````
 
-[Start_request()](http://doc.scrapy.org/topics/spiders.html#scrapy.spider.BaseSpider.start_requests) is the method called by Scrapy when the spider is opened for scraping when no particular URLs are specified with a default start_urls list. Once the request is made and the server returns a response, the callback function (self.parseBrandCategories()) takes over. Add this to your spider below the start_requests() function: 
+[Start_request()](http://doc.scrapy.org/en/0.24/topics/spiders.html?highlight=start%20request#scrapy.spider.Spider.start_requests) is the method called by Scrapy when the spider is opened for scraping when no particular URLs are specified with a default start_urls list. Once the request is made and the server returns a response, the callback function (self.parseBrandCategories()) takes over. Add this to your spider below the start_requests() function: 
 
 ````python
     #
@@ -89,7 +89,7 @@ SPIDER = WaliquorSpider()
             yield item
 ````
 
-Let's review what's happening: The function receives the [response](http://doc.scrapy.org/topics/request-response.html?highlight=response#scrapy.http.Response) object from the initial request and creates a [HtmlXPathSelector](http://doc.scrapy.org/topics/selectors.html?highlight=htmlxpathselector#scrapy.selector.XPathSelector) called **"hxs"**. HtmlXPathSelector gives us a way to look through the HTML and find the specific elements we're after. But before we can write an XPath statement, we have to look at the HTML by hand and figure out the structure. This is where a plugin like Firebug can come in very handy. Remember, in this step we're after the list of brand categories. By looking at the page markup in Firebug, I can see that the brand categories are in a form, then a div, then a center tag, then a table, etc, etc. Eventually, you get to the actual options, where I've used the "[position()>1]" property to avoid grabbing the first item: "(Please select...)". Next is a text() selector to grab only the text, not the tags around it.
+Let's review what's happening: The function receives the [response](http://doc.scrapy.org/en/0.24/topics/request-response.html?highlight=response#scrapy.http.Response) object from the initial request and creates a [HtmlXPathSelector](http://doc.scrapy.org/en/0.24/topics/selectors.html?highlight=selectors) called **"hxs"**. HtmlXPathSelector gives us a way to look through the HTML and find the specific elements we're after. But before we can write an XPath statement, we have to look at the HTML by hand and figure out the structure. This is where a plugin like Firebug can come in very handy. Remember, in this step we're after the list of brand categories. By looking at the page markup in Firebug, I can see that the brand categories are in a form, then a div, then a center tag, then a table, etc, etc. Eventually, you get to the actual options, where I've used the "[position()>1]" property to avoid grabbing the first item: "(Please select...)". Next is a text() selector to grab only the text, not the tags around it.
 
 ````python
 brandCategoryList = hxs.select('//form/div/center/table/tr/td/select/option[position()>1]/text()').extract()
@@ -109,7 +109,7 @@ yield item
 
 ## Defining your items
 
-> [Items](http://doc.scrapy.org/topics/items.html) are containers that will be loaded with the scraped data.
+> [Items](http://doc.scrapy.org/en/0.24/topics/items.html?highlight=items) are containers that will be loaded with the scraped data.
 
 Open the items.py file in your project folder and overwrite everything with the following code:
 ````python
@@ -124,7 +124,7 @@ That's it! An item is a simple container for the values you just parsed via the 
 
 ## Creating pipelines
 
-> [Pipelines](http://doc.scrapy.org/topics/item-pipeline.html) receive the scraped data from the items and stores it in the way you specify.
+> [Pipelines](http://doc.scrapy.org/en/0.24/topics/item-pipeline.html?highlight=pipeline) receive the scraped data from the items and stores it in the way you specify.
 
 In your project folder, there is a file called pipelines.py. Open the file and overwrite everything with the following: 
 
@@ -143,7 +143,7 @@ class WaliquorPipeline(object):
             return item
 ````
 
-The pipeline is using the built-in CSV abilities of Python to open a new file (or an existing one if it's already been created) and then write a header row to the top. Next, when all the BrandCategoryItem instances are created by your spider, they will automatically be passed in to this pipeline where the [process_item()](http://doc.scrapy.org/topics/item-pipeline.html?highlight=process_item#process_item) class will add a row to "brandCategoryTable.csv". You've now gone from an initial request to outputting CSV file! We also completed the first step of our project - getting the brand category data. Don't worry, the next two steps are very similar, so we'll fly through them.
+The pipeline is using the built-in CSV abilities of Python to open a new file (or an existing one if it's already been created) and then write a header row to the top. Next, when all the BrandCategoryItem instances are created by your spider, they will automatically be passed in to this pipeline where the [process_item()](http://doc.scrapy.org/en/0.24/topics/item-pipeline.html?highlight=process#process_item) class will add a row to "brandCategoryTable.csv". You've now gone from an initial request to outputting CSV file! We also completed the first step of our project - getting the brand category data. Don't worry, the next two steps are very similar, so we'll fly through them.
 
 ## Rinse and repeat for the brand pages
 
