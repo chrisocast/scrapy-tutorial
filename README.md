@@ -1,21 +1,14 @@
 Scrapy-tutorial-liquor
 ======================
 
-_**UPDATE:**_ On June 1, 2012, Washington State began allowing private-sector businesses to sell liquor and closed all state-owned stores. The Liquor Control Board web site I used in this example was closed along with them. I'll leave this tutorial on the site, but only as a reference. If I get time to post a new Scrapy tutorial, I'll post an update here as well. This tutorial will walk you through a web-scraping project from scratch using [Scrapy](http://scrapy.org/), a Python scraping framework. By the end, you'll be able to:
+_**UPDATE:**_ This tutorial is very old at this point and is most likely out of date with the Scrapy library. Also in 2012, Washington State began allowing private-sector businesses to sell liquor and closed all state-owned stores. The Liquor Control Board web site I used in this example was closed along with them. If I get time to post a new Scrapy tutorial, I'll post an update here as well. 
+
+This tutorial will walk you through a web-scraping project from scratch using [Scrapy](http://scrapy.org/), a Python scraping framework. By the end, you'll be able to:
 
 *   Create a spider from scratch using both GET and POST requests
 *   Handle the responses via Items and Pipelines
 *   Parse your data into multiple files (in this case - CSV)
 *   Use XPath selectors to find specific elements within a HTML document
-
-What you'll need:
-
-*   [Scrapy](http://scrapy.org/download/) (and required libraries - see Scrapy [install guide](http://doc.scrapy.org/intro/install.html))
-*   [Tutorial files](/wp-content/uploads/2010/05/waliquor_tutorial.zip) (or you can just go through the steps below)
-*   [Python](http://python.org/download/) (I'm using 2.6, but 2.5 or 2.7 should work)
-*   A browser that makes viewing page markup easy, like [Firefox](http://www.mozilla.com/en-US/) (with [Firebug](http://getfirebug.com/)) or [Google Chrome](http://www.google.com/chrome)
-
-I won't post any sort of install tutorials here, there is a [good one](http://doc.scrapy.org/intro/install.html) on the Scrapy site already. If you are having trouble getting libraries to install (especially on a Mac), hit me up in the comments or email and I'll do my best to help. Let's get started.
 
 ## Planning the data format
 
